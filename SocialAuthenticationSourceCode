@@ -1,0 +1,46 @@
+* Settings.py
+
+In INSTALLED_APPS add 
+
+'django.contrib.sites',
+'user',
+'allauth',
+'allauth.account'
+'allauth.socialaccount'
+
+#providers
+'allauth.socialaccount.providers.facebook',
+'allauth.socialaccount.providers.google'
+
+* Add SITE_ID = 1
+
+
+* In urls.py
+
+path('accounts/', include('allauth.urls)),
+
+
+* In index.html,
+
+{% load socialaccount %}
+{% providers_media_js %}
+
+{{ user }}
+add <a href="{% provider_login_url "facebook" method = "js_sdk" %}">Facebook login</a>
+<a href="{% provider_login_url "google"  %}">Facebook login</a>
+
+
+* In Settings.py
+LOGIN_REDIRECT_URL = "/"
+
+* In console.googledevelopers,
+http://127.0.0.1:8000
+localhost:8000
+
+and in redirect urls
+http://127.0.0.1:8000/accounts/google/login/callback/
+localhost:8000/accounts/google/login/callback/
+
+
+
+
